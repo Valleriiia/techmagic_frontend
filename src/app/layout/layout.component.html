@@ -1,0 +1,24 @@
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard">Головна</a>
+      <a mat-list-item routerLink="/machines">Станки</a>
+      <a mat-list-item routerLink="/repair-types">Види ремонту</a>
+      <a mat-list-item routerLink="/repairs">Ремонти</a>
+      <a mat-list-item routerLink="/users" *ngIf="isAdmin()">Користувачі</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Система обліку ремонтів</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/auth" *ngIf="!isLoggedIn()">Вхід</button>
+      <button mat-button (click)="logout()" *ngIf="isLoggedIn()">Вихід</button>
+    </mat-toolbar>
+
+    <div class="page-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

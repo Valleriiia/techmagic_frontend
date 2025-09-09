@@ -1,0 +1,27 @@
+.machine-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+mat-card {
+  margin-bottom: 30px;
+
+  &-title {
+    padding: 8px 16px;
+  }
+
+  &-actions {
+    gap: 12px;
+  }
+}
+
+.repairs-card {
+  margin-top: 16px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 16px;
+}

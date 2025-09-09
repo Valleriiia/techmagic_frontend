@@ -1,0 +1,48 @@
+<div class="repair-types-page">
+  <h2>Види ремонту</h2>
+
+  <button mat-raised-button color="primary" (click)="addRepairType()" *appAdminOnly>Додати тип ремонту</button>
+
+  <table mat-table [dataSource]="repairTypes" class="mat-elevation-z8">
+
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Назва </th>
+      <td mat-cell *matCellDef="let rt"> {{ rt.name }} </td>
+    </ng-container>
+
+    <!-- Duration -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Тривалість (днів) </th>
+      <td mat-cell *matCellDef="let rt"> {{ rt.duration }} </td>
+    </ng-container>
+
+    <!-- Cost -->
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef> Вартість (грн) </th>
+      <td mat-cell *matCellDef="let rt"> {{ rt.cost }} </td>
+    </ng-container>
+
+    <!-- Notes -->
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef> Примітки </th>
+      <td mat-cell *matCellDef="let rt"> {{ rt.notes }} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions" *appAdminOnly>
+      <th mat-header-cell *matHeaderCellDef> Дії </th>
+      <td mat-cell *matCellDef="let rt">
+        <button mat-icon-button color="primary" (click)="editRepairType(rt)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteRepairType(rt._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

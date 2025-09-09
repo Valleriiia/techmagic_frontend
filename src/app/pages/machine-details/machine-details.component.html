@@ -1,0 +1,24 @@
+<mat-card *ngIf="machine">
+  <mat-card-title>{{ machine.brand }} ({{ machine.year }})</mat-card-title>
+  <mat-card-content>
+    <p><strong>Країна:</strong> {{ machine.country }}</p>
+    <p><strong>Кількість ремонтів:</strong> {{ repairs.length }}</p>
+  </mat-card-content>
+
+  <mat-card-actions *appAdminOnly>
+    <button mat-raised-button color="primary" (click)="editMachine()">Редагувати</button>
+    <button mat-raised-button color="warn" (click)="deleteMachine()">Видалити</button>
+    <button mat-raised-button color="accent" (click)="addRepair()">Додати ремонт</button>
+  </mat-card-actions>
+</mat-card>
+
+<h2>Історія ремонтів</h2>
+<mat-list *ngIf="repairs.length > 0; else noRepairs">
+  <mat-list-item *ngFor="let r of repairs">
+    {{ r.repairType?.name }} — {{ r.startDate | date }} — {{ r.repairType?.cost }} грн
+  </mat-list-item>
+</mat-list>
+
+<ng-template #noRepairs>
+  <p>Ремонтів ще немає</p>
+</ng-template>

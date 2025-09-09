@@ -1,0 +1,60 @@
+<div class="repairs-page">
+  <h2>Журнал ремонтів</h2>
+
+  <button mat-raised-button color="primary" (click)="addRepair()" *appAdminOnly>Додати ремонт</button>
+
+  <table mat-table [dataSource]="repairs" class="mat-elevation-z8">
+
+    <!-- Machine -->
+    <ng-container matColumnDef="machine">
+      <th mat-header-cell *matHeaderCellDef> Станок </th>
+      <td mat-cell *matCellDef="let r"> {{ r.machine?.brand }} ({{ r.machine?.year }}) </td>
+    </ng-container>
+
+    <!-- Repair Type -->
+    <ng-container matColumnDef="repairType">
+      <th mat-header-cell *matHeaderCellDef> Вид ремонту </th>
+      <td mat-cell *matCellDef="let r"> {{ r.repairType?.name }} </td>
+    </ng-container>
+
+    <!-- Date -->
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef> Дата </th>
+      <td mat-cell *matCellDef="let r"> {{ r.startDate | date }} </td>
+    </ng-container>
+
+    <!-- Duration -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef> Тривалість (дні) </th>
+      <td mat-cell *matCellDef="let r"> {{ r.repairType?.duration }} </td>
+    </ng-container>
+
+    <!-- Cost -->
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef> Вартість (грн) </th>
+      <td mat-cell *matCellDef="let r"> {{ r.repairType?.cost }} </td>
+    </ng-container>
+
+    <!-- Notes -->
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef> Примітки </th>
+      <td mat-cell *matCellDef="let r"> {{ r.notes }} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions" *appAdminOnly>
+      <th mat-header-cell *matHeaderCellDef> Дії </th>
+      <td mat-cell *matCellDef="let r">
+        <button mat-icon-button color="primary" (click)="editRepair(r)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteRepair(r._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

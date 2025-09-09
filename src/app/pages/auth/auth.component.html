@@ -1,0 +1,49 @@
+<div class="auth-page">
+  <mat-tab-group>
+    <!-- Login Tab -->
+    <mat-tab label="Увійти">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="auth-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Пароль</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          Увійти
+        </button>
+      </form>
+    </mat-tab>
+
+    <!-- Register Tab -->
+    <mat-tab label="Реєстрація">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="auth-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Ім’я користувача</mat-label>
+          <input matInput formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Пароль</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Підтвердьте пароль</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="confirmPassword" />
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="registerForm.invalid">
+          Зареєструватися
+        </button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+</div>
